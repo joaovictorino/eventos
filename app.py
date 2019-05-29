@@ -3,11 +3,15 @@ from flask_cors import CORS
 from flask_jwt import JWT
 import common
 
-app = Flask("Plataforma de Eventos")
+app = Flask(__name__)
 CORS(app)
 common.app = app
 
 app.config.from_pyfile('config.cfg')
+
+import lib.log
+log = lib.log.SetupLog(__name__)
+common.log = log
 
 from flask_mongoengine import MongoEngine
 db = MongoEngine(app)
@@ -23,4 +27,7 @@ common.jwt = jwt
 import lib.routes
 if __name__ == "__main__":
     app.debug = True
+    log.info("App running in debug mode")
     app.run()
+    
+    

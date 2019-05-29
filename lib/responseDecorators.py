@@ -1,5 +1,6 @@
 from functools import wraps
 from flask import jsonify
+from common import log
 
 def ErrorHandlerAndJsonifier(func):
     @wraps(func)
@@ -12,8 +13,10 @@ def ErrorHandlerAndJsonifier(func):
             response["status"] = "ok"
         except Exception as ex:
             try:
+                log.error("Error: " + str(ex))
                 response["data"] = str(ex)
             except:
+                log.error("Error returning information")
                 response["data"] = "Was not able to stringfigy exception"
             response["status"] = "fail"
             
@@ -21,6 +24,7 @@ def ErrorHandlerAndJsonifier(func):
             objResponse = jsonify(response)
         except Exception as ex:
             print(ret)
+            log.error("Error returning serializing repsonse")
             objResponse = "Was not possible to serialize response"
         return objResponse
     return wrapper
