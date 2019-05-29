@@ -9,8 +9,8 @@ common.app = app
 
 app.config.from_pyfile('config.cfg')
 
-import lib.log
-log = lib.log.SetupLog(__name__)
+import api.lib.log
+log = api.lib.log.SetupLog(__name__)
 common.log = log
 
 from flask_mongoengine import MongoEngine
@@ -19,12 +19,13 @@ common.db = db
 
 from flask_mongoengine import MongoEngineSessionInterface
 app.session_interface = MongoEngineSessionInterface(db)
-import model
+import api.model
 
-jwt = JWT(app, model.user.User.authenticate, model.user.User.identity)
+jwt = JWT(app, api.model.user.User.authenticate, api.model.user.User.identity)
 common.jwt = jwt
 
-import lib.routes
+import api.lib.routes
+import api.controller
 if __name__ == "__main__":
     app.debug = True
     log.info("App running in debug mode")

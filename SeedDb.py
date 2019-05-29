@@ -1,7 +1,7 @@
 import requests
 import json
 
-baseAddr = "http://localhost:5000"
+baseAddr = "http://localhost:5000/api/"
 
 
 def DoRequest(endpoint, data):

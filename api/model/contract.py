@@ -1,10 +1,12 @@
 from mongoengine import *
 from datetime import datetime
-from lib.modelBase import CRUD
+from api.lib.modelBase import CRUD
+from api.model.plan import Plan
 
-class Plan(Document, CRUD):
+class Contract(Document, CRUD):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
+    plan = ReferenceField(Plan)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
@@ -13,5 +15,5 @@ class Plan(Document, CRUD):
         document.updated_on = datetime.now()
         
 from mongoengine import signals
-signals.pre_save.connect(Plan.pre_save, sender=Plan)
+signals.pre_save.connect(Contract.pre_save, sender=Contract)
 

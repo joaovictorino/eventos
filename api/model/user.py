@@ -1,7 +1,7 @@
 import json
 from mongoengine import *
 from datetime import datetime
-from lib.modelBase import CRUD
+from api.lib.modelBase import CRUD
 import bcrypt
 import base64
 

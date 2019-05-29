@@ -1,13 +1,13 @@
 from mongoengine import *
 from datetime import datetime
-from lib.modelBase import CRUD
-from model.domain import Domain
+from api.lib.modelBase import CRUD
+from api.model.domain import Domain
 
-class EventGroup(Document, CRUD):
+class Event(Document, CRUD):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
     domain = ReferenceField(Domain)
-    events = ListField(ReferenceField('Event'))
+    hasgroup = BooleanField(default=False)
     start_on = DateTimeField()
     end_on = DateTimeField()
     created_on = DateTimeField(default=datetime.now())
@@ -18,5 +18,5 @@ class EventGroup(Document, CRUD):
         document.updated_on = datetime.now()
         
 from mongoengine import signals
-signals.pre_save.connect(EventGroup.pre_save, sender=EventGroup)
+signals.pre_save.connect(Event.pre_save, sender=Event)
 
