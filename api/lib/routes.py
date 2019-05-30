@@ -17,7 +17,7 @@ def testEmpty():
     
 @app.route("/api/testFail")
 @ErrorHandlerAndJsonifier
-def testeFail():
+def testFail():
     raise Exception("Exception Message")
 
 @jwt.jwt_error_handler
@@ -30,7 +30,6 @@ def jwtError(e):
 def authenticationHandler(token, user):
     return {"token": token.decode(), 
             "user": user.toDict()}
-    
     
 @app.route("/<path:path>")
 @ErrorHandlerAndJsonifier
