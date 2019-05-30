@@ -2,6 +2,7 @@ import json
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
+from api.model.permission import Permission
 import bcrypt
 import base64
 
@@ -9,6 +10,7 @@ class User(Document, CRUD):
     login = StringField(required=True, unique=True, max_length=20)
     password = StringField(required=False, max_length=100)
     hashedPassword = BinaryField(required=True, max_length=100)
+    permissions = ListField(ReferenceField(Permission))
     name = StringField(required=True, max_length=200)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())

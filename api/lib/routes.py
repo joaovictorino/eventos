@@ -1,5 +1,5 @@
 from flask import request
-from api.lib.responseDecorators import ErrorHandlerAndJsonifier
+from api.lib.routeDecorators import ErrorHandlerAndJsonifier, EnsurePermissions
 
 import common
 app = common.app
@@ -22,9 +22,21 @@ def testEmpty():
 def testFail():
     if app.debug:
         raise Exception("Exception Message")
+        
+@app.route("/api/testPermissionsOk")
+@ErrorHandlerAndJsonifier
+@EnsurePermissions("p1")
+def testPermissionsOk():
+    return "Access Granted"
+    
+@app.route("/api/testPermissionsFail")
+@ErrorHandlerAndJsonifier
+@EnsurePermissions("undefined permission")
+def testPermissionsFail():
+    return "Access Denied"
 
 import api.lib.upload
-@app.route("/testUpload", methods=["POST"])
+@app.route("/api/testUpload", methods=["POST"])
 @ErrorHandlerAndJsonifier
 def upload():
     if app.debug:

@@ -1,6 +1,7 @@
 from mongoengine import *
 from bson import ObjectId
 
+import pdb
 class CRUD(object):
     @classmethod
     def HandleRequest(cls, request, **kwargs):
@@ -28,19 +29,8 @@ class CRUD(object):
             
             data = request.get_json()
             for key in data:
-                if key in cls._fields:
-                    field = cls._fields[key]
-                    fieldValue = data[key]
-                    if type(field) is ReferenceField:
-                        print ("oK")
-                        print (str(ObjectId(fieldValue)))
-                        referredInstance = field.document_type.objects(id=ObjectId(fieldValue))
-                        print (referredInstance)
-                        if len(referredInstance) > 0:
-                            fieldValue = referredInstance[0].to_dbref()
-                        else:
-                            raise Exception("Referred object not found")
-                    setattr(instance, key, fieldValue)
+                fieldValue = data[key]
+                FillInInstanceWithData(instance, key, fieldValue)
             instance.save()
             instance.cascade_save()
             ret = instance
@@ -58,3 +48,27 @@ class CRUD(object):
         else:
             raise Exception("No such operation")
         return ret
+
+def FillInInstanceWithData(instance, fieldName, fieldValue):
+    if fieldName in instance._fields:
+        field = instance._fields[fieldName]
+        #Handle ReferenceField
+        if type(field) is ReferenceField:
+            referredInstance = field.document_type.objects(id=ObjectId(fieldValue))
+            if len(referredInstance) > 0:
+                fieldValue = referredInstance[0].to_dbref()
+            else:
+                raise Exception("Referred object not found")
+            setattr(instance, fieldName, fieldValue)
+        #Handle ListField(ReferenceField)
+        elif type(field) is ListField and type(field.field) is ReferenceField and type(fieldValue) == list:
+            instanceList = getattr(instance, fieldName)
+            for singleValue in fieldValue:
+                referredInstance = field.field.document_type.objects(id=ObjectId(singleValue))
+                if len(referredInstance) > 0:
+                    fieldValue = referredInstance[0].to_dbref()
+                    instanceList.append(fieldValue)                                
+                else:
+                    raise Exception("Referred object not found")
+        else:
+            setattr(instance, fieldName, fieldValue)

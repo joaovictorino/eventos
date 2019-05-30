@@ -1,7 +1,7 @@
 import requests
 import json
 
-baseAddr = "http://localhost:5000/api/"
+baseAddr = "http://localhost:5000/api"
 
 
 def DoRequest(endpoint, data):
@@ -46,8 +46,19 @@ if idPlano is not None:
             idEvento = DoRequest("event", data)
 
 data = {
+    "name": "p1",
+}
+perm1 = DoRequest("permission", data)
+
+data = {
+    "name": "p2",
+}
+perm2 = DoRequest("permission", data)
+
+data = {
     "login": "user",
     "name": "Bicho",
-    "password": "123456"
+    "password": "123456",
+    "permissions": [perm1, perm2]
 }
 idUser = DoRequest("user", data)

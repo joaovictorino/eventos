@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from api.lib.responseDecorators import ErrorHandlerAndJsonifier
+from api.lib.routeDecorators import ErrorHandlerAndJsonifier
 
 import common
 app = common.app
