@@ -9,8 +9,11 @@ common.app = app
 
 app.config.from_pyfile('config.cfg')
 
-import api.lib.log
-log = api.lib.log.SetupLog(__name__)
+from lib.util import SetupEnv
+SetupEnv()
+
+import lib.log
+log = lib.log.SetupLog(__name__)
 common.log = log
 
 from flask_mongoengine import MongoEngine

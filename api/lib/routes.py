@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from api.lib.responseDecorators import ErrorHandlerAndJsonifier
 
 import common
@@ -8,18 +8,28 @@ jwt = common.jwt
 @app.route("/api/testOk")
 @ErrorHandlerAndJsonifier
 def testOk():
-    return "API Data"
+    if app.debug:
+        return "API Data"
 
 @app.route("/api/testEmpty")
 @ErrorHandlerAndJsonifier
 def testEmpty():
-    return None
+    if app.debug:
+        return None
     
 @app.route("/api/testFail")
 @ErrorHandlerAndJsonifier
 def testFail():
-    raise Exception("Exception Message")
+    if app.debug:
+        raise Exception("Exception Message")
 
+import api.lib.upload
+@app.route("/testUpload", methods=["POST"])
+@ErrorHandlerAndJsonifier
+def upload():
+    if app.debug:
+        return api.lib.upload.Upload(request)
+        
 @jwt.jwt_error_handler
 @ErrorHandlerAndJsonifier
 def jwtError(e):
@@ -30,8 +40,9 @@ def jwtError(e):
 def authenticationHandler(token, user):
     return {"token": token.decode(), 
             "user": user.toDict()}
-    
+
 @app.route("/<path:path>")
 @ErrorHandlerAndJsonifier
 def default(path):
     return None
+    
