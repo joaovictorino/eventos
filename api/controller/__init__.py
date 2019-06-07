@@ -1,9 +1,6 @@
-import api.controller.plan
-import api.controller.place
-import api.controller.contract
-import api.controller.domain
-import api.controller.eventCategory
-import api.controller.eventGroup
-import api.controller.event
-import api.controller.permission
-import api.controller.user
+import lib.util
+import os
+
+controllersPath = os.path.dirname(__file__)
+lib.util.ImportAllFromDir(controllersPath, "api.controller.")
+
