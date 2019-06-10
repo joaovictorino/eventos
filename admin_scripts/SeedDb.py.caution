@@ -1,0 +1,142 @@
+#coding:utf-8
+import requests
+import json
+
+from pymongo import MongoClient
+client = MongoClient("mongodb://localhost:27017")
+client.drop_database("plataformaDeEventos")
+client.close()
+
+baseAddr = "http://127.0.0.1:5000/api"
+
+
+def DoRequest(endpoint, data):
+    print("On endpoint '%s'" % (endpoint,))
+    href = baseAddr + "/" + endpoint
+    headers = {'Content-Type': 'application/json'}
+    response = json.loads(requests.post(href, data=json.dumps(data), headers=headers).content)
+    status = response["status"]
+    print("Status: %s" % (status,))
+    id = None
+    if status == "ok":
+        id = response["data"]["_id"]["$oid"]
+        print("Id: %s" % (id,))
+    else:
+        print (response)
+    return id
+
+dataPlan = {
+	"name": "MyPlan",
+	"description": "This is my plan",
+	"isTemplate": True,
+    "events": 10,
+    "eventGroups": 10,
+    "activities": 10
+}
+idPlan = DoRequest("plan", dataPlan)
+
+dataSubscription = {
+	"name": "MySubscription",
+	"description": "this is my subscription",
+	"plan": idPlan,
+}
+idSubscription = DoRequest("subscription", dataSubscription)
+
+dataUserGroup = {
+	"name": "MyGroup",
+	"description": "This is My Group",
+	"subscription": idSubscription,
+}
+idUserGroup = DoRequest("userGroup", dataUserGroup)
+
+dataProfile = {
+	"name": "MyProfile",
+	"description": "This is my profile",
+}
+idProfile = DoRequest("profile", dataProfile)
+
+dataUser = {
+	"name": "Root User",
+	"email": "root@localhost.com",
+	"login": "root",
+	"password": "123456",
+    "permissions": {"group":idUserGroup, "profile": idProfile}
+}
+idUser = DoRequest("user", dataUser)
+
+dataCategoryGroup = {
+	"name": "MyGroupCat",
+	"description": "This is a category group",
+}
+idCategoryGroup = DoRequest("categoryGroup", dataCategoryGroup)
+
+dataCategory = {
+	"name": "MyCatergory",
+	"description": "This is a category",
+	"group": idCategoryGroup,
+}
+idCategory = DoRequest("category", dataCategory)
+
+dataEvent = {
+	"name": "MyEvent",
+	"description": "This is my event",
+	"owner": idUserGroup,
+	"publishDate": "2018-01-01",
+	"unpublishDate": "2019-01-01",
+	"startDate": "2018-01-02",
+	"endDate": "2018-01-03",
+    "categories": [idCategory],
+    "activities": [{"name": "MyActivity1", "startDate": "2019-01-01", "endDate": "2020-01-01"},
+                   {"name": "MyActivity2", "startDate": "2019-01-02", "endDate": "2020-01-02"}],
+	"tags": ["T1", "T2"],
+	"externalUrl": "http://www.google.com",
+	"hasSubscription": False,
+    "isPaid": True
+}
+idEvent = DoRequest("event", dataEvent)
+
+
+dataCitizen = {
+	"name": "Municipe",
+	"email": "municipe@alpha.beta",
+	"loginMethod": "direct",
+	"accessToken": "12346",
+	"profilePic": "https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/chamadas/logo-prodam_1504643391.jpg",
+}
+idCitizen = DoRequest("citizen", dataCitizen)
+
+dataComment = {
+	"owner": idCitizen,
+	"event": idEvent,
+	"content": "Hello world comment",
+}
+idComment = DoRequest("comment", dataComment)
+
+
+dataPlace = {
+	"name": "Prodam",
+	"description": "Cia. de Tecnologia da Informação e Comunicação do Município de São Paulo",
+	"coordinates": [-23.5255743,-46.6792727],
+	"street": "Av. Auro Soares de Moura Andrade",
+	"number": "1500",
+	"cep": "05001-001",
+	"neighborhood": "Água Branca",
+}
+idPlace = DoRequest("place", dataPlace)
+
+dataNotification = {
+    "owner": idUser,
+    "content": "Hello world notification",
+}
+idNotification= DoRequest("notification", dataNotification)
+
+dataCheckin = {
+    "event": idEvent,
+    "citizen": idCitizen
+}
+idCheckin= DoRequest("checkin", dataCheckin)
+
+dataCalendar = {
+    "events": [idEvent],
+}
+idCalendar= DoRequest("calendar", dataCalendar)

@@ -1,12 +1,14 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
-from api.model.contract import Contract
+from api.model.plan import Plan
+from api.model.user import User
 
-class Domain(Document, CRUD):
+class Subscription(Document, CRUD):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
-    contract = ReferenceField(Contract)
+    plan = ReferenceField(Plan)
+    admin = ReferenceField(User)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
@@ -15,5 +17,5 @@ class Domain(Document, CRUD):
         document.updated_on = datetime.now()
         
 from mongoengine import signals
-signals.pre_save.connect(Domain.pre_save, sender=Domain)
+signals.pre_save.connect(Subscription.pre_save, sender=Subscription)
 

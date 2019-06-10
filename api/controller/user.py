@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from api.lib.routeDecorators import ErrorHandlerAndJsonifier
 
 import common

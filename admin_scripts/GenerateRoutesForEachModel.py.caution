@@ -1,0 +1,31 @@
+import os
+
+modelsDir = "../api/model"
+controllersDir = "../api/controller"
+
+template = """from flask import request
+from api.lib.routeDecorators import ErrorHandlerAndJsonifier
+
+import common
+app = common.app
+jwt = common.jwt
+
+import api.model.[[PLACEHOLDER]]
+@app.route("/api/[[PLACEHOLDER]]", methods=["GET", "POST"])
+@app.route("/api/[[PLACEHOLDER]]/<id>", methods=["GET", "POST", "DELETE"])
+@ErrorHandlerAndJsonifier
+def [[PLACEHOLDER]](id=None):
+    return api.model.[[PLACEHOLDER]].[[PLACEHOLDER_CAPITAL]].HandleRequest(request, id=id)
+"""
+
+models = os.listdir(modelsDir)
+for model in models:
+    if not model.startswith("_"):
+        modelName = model.replace(".py", "")
+        className = modelName[0].upper() + modelName[1:]
+        
+        controllerData = template.replace("[[PLACEHOLDER]]", modelName).replace("[[PLACEHOLDER_CAPITAL]]", className)
+        fd = open(controllersDir + "/" + model, "w")
+        fd.write(controllerData)
+        fd.close()
+    

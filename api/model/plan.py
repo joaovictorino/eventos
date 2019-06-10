@@ -5,6 +5,10 @@ from api.lib.modelBase import CRUD
 class Plan(Document, CRUD):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
+    isTemplate = BooleanField(default=False)
+    events = IntField(required=True)
+    eventGroups = IntField(required=True)
+    activities = IntField(required=True)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 

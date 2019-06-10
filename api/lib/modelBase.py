@@ -70,5 +70,17 @@ def FillInInstanceWithData(instance, fieldName, fieldValue):
                     instanceList.append(fieldValue)                                
                 else:
                     raise Exception("Referred object not found")
+        #Handle EmbeddedDocument
+        elif type(field) is EmbeddedDocumentField:
+            embeddedInstance = field.field.document_type(fieldValue)
+            setattr(instance, fieldName, embeddedInstance)
+        #Handle EmbeddedListDocument
+        elif type(field) is EmbeddedDocumentListField:
+            if type(fieldValue) is not list:
+                fieldValue = [fieldValue]
+            classField = getattr(instance, fieldName)
+            for embedded in fieldValue:
+                embeddedInstance = field.field.document_type(**embedded)
+                classField.append(embeddedInstance)                
         else:
             setattr(instance, fieldName, fieldValue)

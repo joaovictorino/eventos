@@ -1,0 +1,26 @@
+import os
+import re
+
+modelsDir = "../api/model"
+models = os.listdir(modelsDir)
+for model in models:
+    if not model.startswith("_"):
+        fd = open(modelsDir + "/" + model)
+        contents = fd.read()
+        fd.close()
+        
+        classDef = re.search("class\s+(\w+).*?:(.*?)@classmethod", contents, re.S|re.M)
+        if classDef is not None:
+            fields = [re.sub(" =.*$", "", el).strip() for el in classDef.group(2).splitlines()]
+            
+            modelName = classDef.group(1)
+            modelLowCapital = modelName[0].lower() + modelName[1:]
+            
+            dataName = "data" + modelName
+            print (dataName + " = {")
+            for field in fields:
+                if "created_on" not in field and "updated_on" not in field and len(field)  > 0:
+                    print ('\t"' + field + '": "",')
+            print("}")
+            print ("id" + modelName + ' = DoRequest("' + modelLowCapital + '", ' + dataName + ")\n")
+            

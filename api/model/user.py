@@ -7,21 +7,22 @@ import bcrypt
 import base64
 
 class User(Document, CRUD):
+    name = StringField(required=True, max_length=200)
+    email = StringField(required=True, max_length=200)
     login = StringField(required=True, unique=True, max_length=20)
     password = StringField(required=False, max_length=100)
-    hashedPassword = BinaryField(required=True, max_length=100)
-    permissions = ListField(ReferenceField(Permission))
-    name = StringField(required=True, max_length=200)
+    accessToken = BinaryField(required=True, max_length=100)
+    permissions = EmbeddedDocumentListField(Permission)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
         
     def setPassword(self, val):
         encoded = val.encode("utf-8", errors="ignore")
-        self.hashedPassword = bcrypt.hashpw(encoded, bcrypt.gensalt(5))
+        self.accessToken = bcrypt.hashpw(encoded, bcrypt.gensalt(5))
         
     def verify(self, candidate):
         encoded = candidate.encode("utf-8", errors="ignore")
-        valid = bcrypt.checkpw(encoded, self.hashedPassword)
+        valid = bcrypt.checkpw(encoded, self.accessToken)
         return valid
         
     @classmethod

@@ -1,17 +1,12 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
-from api.model.userGroup import UserGroup
-from api.model.file import File
+from api.model.subscription import Subscription
 
-class EventGroup(Document, CRUD):
+class UserGroup(Document, CRUD):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
-    owner = ReferenceField(UserGroup)
-    image = ReferenceField(File)
-    events = ListField(ReferenceField('Event'))
-    startDate = DateTimeField(required=True)
-    endDate = DateTimeField(required=True)
+    subscription = ReferenceField(Subscription)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
@@ -20,5 +15,5 @@ class EventGroup(Document, CRUD):
         document.updated_on = datetime.now()
         
 from mongoengine import signals
-signals.pre_save.connect(EventGroup.pre_save, sender=EventGroup)
+signals.pre_save.connect(UserGroup.pre_save, sender=UserGroup)
 

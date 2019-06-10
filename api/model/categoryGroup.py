@@ -2,7 +2,7 @@ from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
 
-class EventCategory(Document, CRUD):
+class CategoryGroup(Document, CRUD):
     name = StringField(required=True, unique=True, max_length=200)
     description = StringField(required=False, max_length=2000)
     created_on = DateTimeField(default=datetime.now())
@@ -13,5 +13,5 @@ class EventCategory(Document, CRUD):
         document.updated_on = datetime.now()
         
 from mongoengine import signals
-signals.pre_save.connect(EventCategory.pre_save, sender=EventCategory)
+signals.pre_save.connect(CategoryGroup.pre_save, sender=CategoryGroup)
 
