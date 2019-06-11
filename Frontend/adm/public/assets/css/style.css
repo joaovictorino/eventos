@@ -1,0 +1,268 @@
+
+
+html{
+  font-size: 16px;
+  color: #000000;
+  font-style: normal;
+  font-weight: 200;
+  background: #cfd8dc;
+  background: linear-gradient(260deg, rgba(236,239,241,1) 0%, rgba(144,164,174,1) 100%);
+}
+
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+
+
+nav#menu{
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+
+
+#main{
+  margin: 0;
+}
+
+
+
+#content{
+  height: calc(100vh - 2rem);
+  padding: 0;
+  /*overflow-y: scroll;
+  overflow-x: hidden;*/
+}
+
+#content.expcontent{
+  width: calc(100% - 70px);
+}
+
+
+#content > .row{
+  margin: 0;
+}
+
+#content .home{
+  padding: 1rem;
+}
+
+#content .home .row.title-section{
+  margin: 0;
+}
+
+#content .home .row.title-section h2{
+  padding: 0;
+}
+
+.box-wrap{
+  padding: 0 !important;
+}
+  .box-wrap .box-content{
+    min-height: 430px;
+    width: calc(100% - 16px);
+    display: block;
+    float: left;
+    border-radius: 4px;
+    background: #fafafa;
+    padding: 8px;
+    margin: 8px;
+    position: relative;
+  }
+  .box-content.maps{
+    height: calc(100vh - 212px);
+  }
+    .box-wrap .box-content .painel-direct{
+      float: left;
+      display: block;
+      text-align: right;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 4px;
+    }
+  .box-wrap .box-form{
+    min-height: 1rem;
+    width: calc(100% - 16px);
+    display: block;
+    float: left;
+    border-radius: 4px;
+    background: #fafafa;
+    padding: 8px;
+    margin: 8px;
+    position: relative;
+  }
+    
+.chart-box{
+  padding: 1rem;
+}
+
+.bi-label{
+  font-weight: bold;
+}
+.bi-detalhe{
+  font-size: 0.575rem;
+  line-height: 1rem;
+}
+
+.growth-span{
+  font-style: italic;
+  color: #18983C;
+}
+
+
+#metricaOperacional span{
+  font-style: italic;
+  font-size: 0.895rem;
+}
+  .metrica-item strong{
+    font-size: 1.775rem;
+    width: 100%;
+    float: left;
+    line-height: 1.675rem;
+  }
+
+
+.login-entrar .btn{
+  width: 100%;
+  box-shadow: none;
+}
+
+/*MATERIAL*/
+.tabs {
+  width: calc(100% - 2rem);
+}
+
+
+.tabs .tab a{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e374c;
+  border-radius: 0;
+  padding: 0 8px;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+  background-color: rgb(250,250,250,1);
+}
+
+.tabs .tab a:hover{
+  color: #ffbe00;
+  background: #ccc;
+}
+
+.tabs .tab a.active{
+  color: #333333;
+  background: #fafafa;
+}
+
+.tabs .indicator{
+  background-color: #fafafa;
+  height: 4px;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #475765;
+  -webkit-box-shadow: 0 1px 0 0 #475765;
+          box-shadow: 0 1px 0 0 #475765;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #475765;
+}
+.dropdown-content{
+  left: 64px !important;
+}
+.dropdown-content li{
+  border-radius: 4px;
+}
+.dropdown-content li > a{
+  padding: 8px;
+}
+
+.btn{
+  box-shadow: none;
+  background-color: #03a9f4;
+}
+.btn:hover{
+  box-shadow: none;
+  background-color: #3f51b5;
+}
+
+.margin-zero{
+  margin: 0;
+}
+
+.input-field > label{
+  color: #475765;
+}
+
+#login img{
+  padding: 2rem;
+}
+
+.login .row{
+  margin-bottom: 0;
+}
+
+.range-field{
+  text-align: center;
+  margin: 0;
+}
+
+/*MATERIAL*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
