@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "comments",
+  name: 'comments',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

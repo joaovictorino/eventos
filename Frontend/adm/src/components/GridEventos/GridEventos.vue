@@ -27,8 +27,8 @@
 
 <script>
 export default {
-  name: "grideventos"
-};
+  name: 'grideventos'
+}
 </script>
 
 <style>
@@ -48,4 +48,3 @@ export default {
   width: 128px;
 }
 </style>
-

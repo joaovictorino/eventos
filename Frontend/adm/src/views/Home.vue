@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "home",
+  name: 'home',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

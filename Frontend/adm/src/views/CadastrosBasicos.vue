@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "cadbasicos",
+  name: 'cadbasicos',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "groups",
+  name: 'groups',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

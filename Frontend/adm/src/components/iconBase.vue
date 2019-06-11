@@ -19,7 +19,7 @@ export default {
   props: {
     iconName: {
       type: String,
-      default: "box"
+      default: 'box'
     },
     width: {
       type: [Number, String],
@@ -31,14 +31,14 @@ export default {
     },
     view: {
       type: [Number, String],
-      default: "0 0 18 18"
+      default: '0 0 18 18'
     },
     iconColor: {
       type: String,
-      default: "currentColor"
+      default: 'currentColor'
     }
   }
-};
+}
 </script>
 
 <style scoped>

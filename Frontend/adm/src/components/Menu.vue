@@ -12,7 +12,7 @@
         </div>
         <div class="menu-content">
           <ul class="menu-list collapsible">
-            <li v-for="(menu,key) in $store.state.menus">
+            <li v-for="(menu,key) in $store.state.menus" :key="key">
               <div class="collapsible-header">
                 <router-link :to="menu.Link" class="menu-item" :data-target="menu.Target">
                   <icon-base :key="key" icon-name="box">
@@ -22,7 +22,7 @@
                 </router-link>
               </div>
               <div class="collapsible-body">
-                <div v-for="submenu in menu.submenus">
+                <div v-for="(submenu, key) in menu.submenus" :key="key">
                   <router-link :to="submenu.Link" class="menu-item">
                     <icon-base :key="key" icon-name="box">
                       <component :is="submenu.SVG"/>

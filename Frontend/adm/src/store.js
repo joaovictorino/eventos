@@ -10,7 +10,7 @@ export default new Vuex.Store({
     isOpen: '',
     isCOpen: '',
     logado: 0,
-    user: "Daniel Niemietz Braz",
+    user: 'Daniel Niemietz Braz',
     menus: [
       {
         Text: 'Hotsite',
@@ -102,81 +102,81 @@ export default new Vuex.Store({
       count: 1000,
       grid: [
         {
-          col: "Título"
+          col: 'Título'
         },
         {
-          col: "Megaevento"
+          col: 'Megaevento'
         },
         {
-          col: "Subcategoria"
+          col: 'Subcategoria'
         },
         {
-          col: "Local"
+          col: 'Local'
         },
         {
-          col: "Dt evento"
+          col: 'Dt evento'
         },
         {
-          col: "Dt publicação"
+          col: 'Dt publicação'
         },
         {
-          col: "Status"
+          col: 'Status'
         },
         {
-          col: "QRCode"
+          col: 'QRCode'
         }
       ],
       item: [
         {
-          titulo: "Nome evento",
-          megaevento: "Sim",
-          subcategoria: "sub",
-          local: "Sé",
-          dataevento: "01/01/2012",
-          datapublicacao: "02/02/2012",
-          statuspublicacao: "Ativo",
-          qrcode: "3232323232"
+          titulo: 'Nome evento',
+          megaevento: 'Sim',
+          subcategoria: 'sub',
+          local: 'Sé',
+          dataevento: '01/01/2012',
+          datapublicacao: '02/02/2012',
+          statuspublicacao: 'Ativo',
+          qrcode: '3232323232'
         },
         {
-          titulo: "Nome evento",
-          megaevento: "Sim",
-          subcategoria: "sub",
-          local: "Sé",
-          dataevento: "01/01/2012",
-          datapublicacao: "02/02/2012",
-          statuspublicacao: "Ativo",
-          qrcode: "3232323232"
+          titulo: 'Nome evento',
+          megaevento: 'Sim',
+          subcategoria: 'sub',
+          local: 'Sé',
+          dataevento: '01/01/2012',
+          datapublicacao: '02/02/2012',
+          statuspublicacao: 'Ativo',
+          qrcode: '3232323232'
         },
         {
-          titulo: "Nome evento",
-          megaevento: "Sim",
-          subcategoria: "sub",
-          local: "Sé",
-          dataevento: "01/01/2012",
-          datapublicacao: "02/02/2012",
-          statuspublicacao: "Ativo",
-          qrcode: "3232323232"
+          titulo: 'Nome evento',
+          megaevento: 'Sim',
+          subcategoria: 'sub',
+          local: 'Sé',
+          dataevento: '01/01/2012',
+          datapublicacao: '02/02/2012',
+          statuspublicacao: 'Ativo',
+          qrcode: '3232323232'
         },
         {
-          titulo: "Nome evento",
-          megaevento: "Sim",
-          subcategoria: "sub",
-          local: "Sé",
-          dataevento: "01/01/2012",
-          datapublicacao: "02/02/2012",
-          statuspublicacao: "Ativo",
-          qrcode: "3232323232"
+          titulo: 'Nome evento',
+          megaevento: 'Sim',
+          subcategoria: 'sub',
+          local: 'Sé',
+          dataevento: '01/01/2012',
+          datapublicacao: '02/02/2012',
+          statuspublicacao: 'Ativo',
+          qrcode: '3232323232'
         },
         {
-          titulo: "Nome evento",
-          megaevento: "Sim",
-          subcategoria: "sub",
-          local: "Sé",
-          dataevento: "01/01/2012",
-          datapublicacao: "02/02/2012",
-          statuspublicacao: "Ativo",
-          qrcode: "3232323232"
-        },
+          titulo: 'Nome evento',
+          megaevento: 'Sim',
+          subcategoria: 'sub',
+          local: 'Sé',
+          dataevento: '01/01/2012',
+          datapublicacao: '02/02/2012',
+          statuspublicacao: 'Ativo',
+          qrcode: '3232323232'
+        }
       ]
     }
   },

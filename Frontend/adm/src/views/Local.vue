@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "local",
+  name: 'local',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

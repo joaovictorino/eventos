@@ -6,13 +6,13 @@
 
 <script>
 export default {
-      data(){
-        return { 
-        }
-      },
-      methods: {
-      }
-    };
+  data () {
+    return {
+    }
+  },
+  methods: {
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
