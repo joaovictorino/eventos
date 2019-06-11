@@ -23,7 +23,7 @@
         </span>
       </p>
     </div>
-    <div v-else="$store.state.logado" class="col s5 l5 header-auth right right-align">
+    <div v-else class="col s5 l5 header-auth right right-align">
       <p class="header-login">
         <a @click="$store.state.logado = !$store.state.logado">Logar</a>
       </p>
@@ -32,28 +32,28 @@
 </template>
 
 <script>
-import iconBase from "@/components/iconBase.vue";
+import iconBase from '@/components/iconBase.vue'
 
-import iconMenu from "@/components/Icons/iconMenu.vue";
+import iconMenu from '@/components/Icons/iconMenu.vue'
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   components: {
     iconBase,
     iconMenu
   },
   methods: {
-    updateMenu(menu, content) {
+    updateMenu (menu, content) {
       this.$store.state.isOpen =
-        this.$store.state.isOpen === menu ? null : menu;
+        this.$store.state.isOpen === menu ? null : menu
       this.$store.state.isCOpen =
-        this.$store.state.isCOpen === content ? null : content;
+        this.$store.state.isCOpen === content ? null : content
     }
   },
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>
 
 <style scoped>

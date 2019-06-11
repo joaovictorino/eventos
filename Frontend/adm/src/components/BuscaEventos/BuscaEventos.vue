@@ -11,8 +11,8 @@
 
 <script>
 export default {
-  name: "buscaeventos",
+  name: 'buscaeventos',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

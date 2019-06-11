@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "users",
+  name: 'users',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

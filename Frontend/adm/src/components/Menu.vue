@@ -12,7 +12,7 @@
         </div>
         <div class="menu-content">
           <ul class="menu-list collapsible">
-            <li v-for="(menu,key) in $store.state.menus">
+            <li v-for="(menu,key) in $store.state.menus" :key="key">
               <div class="collapsible-header">
                 <router-link :to="menu.Link" class="menu-item" :data-target="menu.Target">
                   <icon-base :key="key" icon-name="box">
@@ -22,7 +22,7 @@
                 </router-link>
               </div>
               <div class="collapsible-body">
-                <div v-for="submenu in menu.submenus">
+                <div v-for="(submenu,key) in menu.submenus" :key="key">
                   <router-link :to="submenu.Link" class="menu-item">
                     <icon-base :key="key" icon-name="box">
                       <component :is="submenu.SVG"/>
@@ -40,22 +40,22 @@
 </template>
 
 <script>
-import iconBase from "@/components/iconBase.vue";
+import iconBase from '@/components/iconBase.vue'
 
-import logo from "@/components/Logo.vue";
+import logo from '@/components/Logo.vue'
 
-import iconUser from "@/components/Icons/iconUser.vue";
-import iconBox from "@/components/Icons/iconBox.vue";
-import iconCalendar from "@/components/Icons/iconCalendar.vue";
-import iconEnvelope from "@/components/Icons/iconEnvelope.vue";
-import iconGarbage from "@/components/Icons/iconGarbage.vue";
-import iconImage from "@/components/Icons/iconImage.vue";
-import iconMoon from "@/components/Icons/iconMoon.vue";
-import iconWrite from "@/components/Icons/iconWrite.vue";
+import iconUser from '@/components/Icons/iconUser.vue'
+import iconBox from '@/components/Icons/iconBox.vue'
+import iconCalendar from '@/components/Icons/iconCalendar.vue'
+import iconEnvelope from '@/components/Icons/iconEnvelope.vue'
+import iconGarbage from '@/components/Icons/iconGarbage.vue'
+import iconImage from '@/components/Icons/iconImage.vue'
+import iconMoon from '@/components/Icons/iconMoon.vue'
+import iconWrite from '@/components/Icons/iconWrite.vue'
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   components: {
     logo,
@@ -70,10 +70,13 @@ export default {
     iconWrite
   },
   methods: {},
-  mounted: function() {
-    menuLoad();
+  mounted: function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      var melems = document.querySelectorAll('.collapsible')
+      M.Collapsible.init(melems, { accordion: true }); // eslint-disable-line
+    })
   }
-};
+}
 </script>
 
 <style scoped>

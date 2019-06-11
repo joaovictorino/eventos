@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "hotsite",
+  name: 'hotsite',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>

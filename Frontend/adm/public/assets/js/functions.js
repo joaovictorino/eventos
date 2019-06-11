@@ -28,9 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function menuLoad() {
-    var melems = document.querySelectorAll('.collapsible');
-    var minstances = M.Collapsible.init(melems, { accordion: true });
-}
 
 

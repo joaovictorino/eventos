@@ -6,10 +6,8 @@
 
 <script>
 export default {
-  name: "categoria",
+  name: 'categoria',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>
-
-

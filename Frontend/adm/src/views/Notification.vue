@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "notification",
+  name: 'notification',
   components: {},
-  mounted: function() {}
-};
+  mounted: function () {}
+}
 </script>
