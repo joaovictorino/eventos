@@ -23,7 +23,7 @@
         </span>
       </p>
     </div>
-    <div v-else="$store.state.logado" class="col s5 l5 header-auth right right-align">
+    <div v-else class="col s5 l5 header-auth right right-align">
       <p class="header-login">
         <a @click="$store.state.logado = !$store.state.logado">Logar</a>
       </p>

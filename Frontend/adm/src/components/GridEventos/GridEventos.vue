@@ -3,9 +3,13 @@
     <div class="row">
       <div class="col s12">
         <div>
-          <div class="grid-header left" v-for="header in $store.state.eventos.grid">{{header.col}}</div>
+          <div
+            class="grid-header left"
+            v-for="(header,key) in $store.state.eventos.grid"
+            :key="key"
+          >{{header.col}}</div>
         </div>
-        <div class="grid-item" v-for="item in $store.state.eventos.item">
+        <div class="grid-item" v-for="(item,key) in $store.state.eventos.item" :key="key">
           <div>{{item.titulo}}</div>
           <div>{{item.megaevento}}</div>
           <div>{{item.subcategoria}}</div>

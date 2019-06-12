@@ -22,7 +22,7 @@
                 </router-link>
               </div>
               <div class="collapsible-body">
-                <div v-for="(submenu, key) in menu.submenus" :key="key">
+                <div v-for="(submenu,key) in menu.submenus" :key="key">
                   <router-link :to="submenu.Link" class="menu-item">
                     <icon-base :key="key" icon-name="box">
                       <component :is="submenu.SVG"/>
@@ -71,7 +71,10 @@ export default {
   },
   methods: {},
   mounted: function() {
-    menuLoad();
+    document.addEventListener("DOMContentLoaded", function() {
+      var melems = document.querySelectorAll(".collapsible");
+      M.Collapsible.init(melems, { accordion: true }); // eslint-disable-line
+    });
   }
 };
 </script>
