@@ -1,0 +1,22 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true
+	},
+	"extends": [ "eslint:recommended", "plugin:vue/essential", "@vue/standard" ],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
+	"parserOptions": {
+		"parser": "babel-eslint"
+	},
+	"plugins": [ "vue" ],
+	"rules": {
+		"semi": [ "warn", "always" ],
+		"indent": [ "warn", 2 ],
+		"no-tabs": "off"
+	}
+}

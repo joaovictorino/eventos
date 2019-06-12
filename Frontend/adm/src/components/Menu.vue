@@ -72,13 +72,8 @@ export default {
   methods: {},
   mounted: function() {
     document.addEventListener("DOMContentLoaded", function() {
-<<<<<<< HEAD
-      var melems = document.querySelectorAll(".collapsible");
-      M.Collapsible.init(melems, { accordion: true }); // eslint-disable-line
-=======
       var Menuelem = document.querySelectorAll(".collapsible");
       var Menuinst = M.Collapsible.init(Menuelem, { accordion: true }); // eslint-disable-line
->>>>>>> b1a7e3119a7684ebdfa2a710e45de680e2290148
     });
   }
 };
