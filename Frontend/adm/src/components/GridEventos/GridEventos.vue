@@ -32,7 +32,7 @@
 <script>
 export default {
   name: 'grideventos'
-}
+};
 </script>
 
 <style>

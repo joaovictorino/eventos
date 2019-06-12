@@ -9,5 +9,5 @@ export default {
   name: 'users',
   components: {},
   mounted: function () {}
-}
+};
 </script>

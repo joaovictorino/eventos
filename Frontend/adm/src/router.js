@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -17,71 +17,71 @@ export default new Router({
       path: '/hotsite',
       name: 'hotsite',
       component: function () {
-        return import('./views/Hotsite.vue')
+        return import('./views/Hotsite.vue');
       }
     },
     {
       path: '/cadastros-basicos',
       name: 'cadbasicos',
       component: function () {
-        return import('./views/CadastrosBasicos.vue')
+        return import('./views/CadastrosBasicos.vue');
       }
     },
     {
       path: '/cadastros-basicos/local',
       name: 'local',
       component: function () {
-        return import('./views/Local.vue')
+        return import('./views/Local.vue');
       }
     },
     {
       path: '/cadastros-basicos/grupo-categoria',
       name: 'grupo-categoria',
       component: function () {
-        return import('./views/GrupoCategoria.vue')
+        return import('./views/GrupoCategoria.vue');
       }
     },
     {
       path: '/cadastros-basicos/categoria',
       name: 'categoria',
       component: function () {
-        return import('./views/Categoria.vue')
+        return import('./views/Categoria.vue');
       }
     },
     {
       path: '/eventos',
       name: 'eventos',
       component: function () {
-        return import('./views/BuscaEventos.vue')
+        return import('./views/BuscaEventos.vue');
       }
     },
     {
       path: '/comments',
       name: 'comments',
       component: function () {
-        return import('./views/Comments.vue')
+        return import('./views/Comments.vue');
       }
     },
     {
       path: '/notification',
       name: 'notification',
       component: function () {
-        return import('./views/Notification.vue')
+        return import('./views/Notification.vue');
       }
     },
     {
       path: '/groups',
       name: 'groups',
       component: function () {
-        return import('./views/Groups.vue')
+        return import('./views/Groups.vue');
       }
     },
     {
       path: '/users',
       name: 'users',
       component: function () {
-        return import('./views/Users.vue')
+        return import('./views/Users.vue');
       }
     }
   ]
-})
+});

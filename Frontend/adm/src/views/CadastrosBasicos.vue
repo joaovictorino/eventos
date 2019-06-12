@@ -9,5 +9,5 @@ export default {
   name: 'cadbasicos',
   components: {},
   mounted: function () {}
-}
+};
 </script>

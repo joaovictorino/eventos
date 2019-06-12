@@ -9,5 +9,5 @@ export default {
   name: 'local',
   components: {},
   mounted: function () {}
-}
+};
 </script>

@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import BuscaEventos from '@/components/BuscaEventos/BuscaEventos.vue'
-import GridEventos from '@/components/GridEventos/GridEventos.vue'
+import BuscaEventos from '@/components/BuscaEventos/BuscaEventos.vue';
+import GridEventos from '@/components/GridEventos/GridEventos.vue';
 
 export default {
   name: 'eventos',
@@ -31,5 +31,5 @@ export default {
     GridEventos
   },
   mounted: function () {}
-}
+};
 </script>

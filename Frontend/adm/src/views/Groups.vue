@@ -9,5 +9,5 @@ export default {
   name: 'groups',
   components: {},
   mounted: function () {}
-}
+};
 </script>

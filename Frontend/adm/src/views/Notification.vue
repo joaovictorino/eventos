@@ -9,5 +9,5 @@ export default {
   name: 'notification',
   components: {},
   mounted: function () {}
-}
+};
 </script>

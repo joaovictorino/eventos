@@ -9,5 +9,5 @@ export default {
   name: 'hotsite',
   components: {},
   mounted: function () {}
-}
+};
 </script>

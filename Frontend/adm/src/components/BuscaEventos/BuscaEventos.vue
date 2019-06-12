@@ -14,5 +14,5 @@ export default {
   name: 'buscaeventos',
   components: {},
   mounted: function () {}
-}
+};
 </script>

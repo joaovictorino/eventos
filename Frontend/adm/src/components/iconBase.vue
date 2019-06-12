@@ -38,7 +38,7 @@ export default {
       default: 'currentColor'
     }
   }
-}
+};
 </script>
 
 <style scoped>

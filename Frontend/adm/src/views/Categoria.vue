@@ -9,5 +9,5 @@ export default {
   name: 'categoria',
   components: {},
   mounted: function () {}
-}
+};
 </script>

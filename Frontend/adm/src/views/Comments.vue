@@ -9,5 +9,5 @@ export default {
   name: 'comments',
   components: {},
   mounted: function () {}
-}
+};
 </script>

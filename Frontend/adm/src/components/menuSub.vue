@@ -1,10 +1,10 @@
 <script>
-import 'materialize-css'
+import 'materialize-css';
 
 export default {
   data () {
-    return {}
+    return {};
   },
   methods: {}
-}
+};
 </script>
