@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="main" class="row">
-      <Header></Header>
+      <Header/>
       <Menu :class="{ openmenu: $store.state.isOpen == 'openmenu' }"></Menu>
       <Content :class="{ expcontent: $store.state.isCOpen == 'expcontent' }"></Content>
     </div>
@@ -9,22 +9,22 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Menu from './components/Menu.vue'
-import Content from './components/Content.vue'
+import Header from "./components/Header.vue";
+import Menu from "./components/Menu.vue";
+import Content from "./components/Content.vue";
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
-  name: 'app',
+  name: "app",
   components: {
     Header,
     Menu,
     Content
   },
   methods: {}
-}
+};
 </script>
 
 <style>
