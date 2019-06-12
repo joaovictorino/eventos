@@ -32,28 +32,29 @@
 </template>
 
 <script>
-import iconBase from '@/components/iconBase.vue'
+import iconBase from "@/components/iconBase.vue";
 
-import iconMenu from '@/components/Icons/iconMenu.vue'
+import iconMenu from "@/components/Icons/iconMenu.vue";
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   components: {
     iconBase,
     iconMenu
   },
   methods: {
-    updateMenu (menu, content) {
+    updateMenu(menu, content) {
       this.$store.state.isOpen =
-        this.$store.state.isOpen === menu ? null : menu
+        this.$store.state.isOpen === menu ? null : menu;
       this.$store.state.isCOpen =
-        this.$store.state.isCOpen === content ? null : content
+        this.$store.state.isCOpen === content ? null : content;
+      Menuinst.close();
     }
   },
-  mounted: function () {}
-}
+  mounted: function() {}
+};
 </script>
 
 <style scoped>

@@ -40,22 +40,22 @@
 </template>
 
 <script>
-import iconBase from '@/components/iconBase.vue'
+import iconBase from "@/components/iconBase.vue";
 
-import logo from '@/components/Logo.vue'
+import logo from "@/components/Logo.vue";
 
-import iconUser from '@/components/Icons/iconUser.vue'
-import iconBox from '@/components/Icons/iconBox.vue'
-import iconCalendar from '@/components/Icons/iconCalendar.vue'
-import iconEnvelope from '@/components/Icons/iconEnvelope.vue'
-import iconGarbage from '@/components/Icons/iconGarbage.vue'
-import iconImage from '@/components/Icons/iconImage.vue'
-import iconMoon from '@/components/Icons/iconMoon.vue'
-import iconWrite from '@/components/Icons/iconWrite.vue'
+import iconUser from "@/components/Icons/iconUser.vue";
+import iconBox from "@/components/Icons/iconBox.vue";
+import iconCalendar from "@/components/Icons/iconCalendar.vue";
+import iconEnvelope from "@/components/Icons/iconEnvelope.vue";
+import iconGarbage from "@/components/Icons/iconGarbage.vue";
+import iconImage from "@/components/Icons/iconImage.vue";
+import iconMoon from "@/components/Icons/iconMoon.vue";
+import iconWrite from "@/components/Icons/iconWrite.vue";
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   components: {
     logo,
@@ -70,13 +70,13 @@ export default {
     iconWrite
   },
   methods: {},
-  mounted: function () {
-    document.addEventListener('DOMContentLoaded', function () {
-      var melems = document.querySelectorAll('.collapsible')
-      M.Collapsible.init(melems, { accordion: true }); // eslint-disable-line
-    })
+  mounted: function() {
+    document.addEventListener("DOMContentLoaded", function() {
+      var Menuelem = document.querySelectorAll(".collapsible");
+      var Menuinst = M.Collapsible.init(Menuelem, { accordion: true }); // eslint-disable-line
+    });
   }
-}
+};
 </script>
 
 <style scoped>
