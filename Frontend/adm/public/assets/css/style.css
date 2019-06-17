@@ -132,10 +132,14 @@ nav#menu{
 }
 
 /*MATERIAL*/
+.col .row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .tabs {
   width: calc(100% - 2rem);
 }
-
 
 .tabs .tab a{
   font-size: 1rem;

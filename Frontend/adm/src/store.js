@@ -76,7 +76,7 @@ export default new Vuex.Store({
       },
       {
         Text: 'Grupos e usuários',
-        Link: '/groups-users',
+        Link: '',
         SVG: 'iconImage',
         Target: 'groups-users',
         Color: '',

@@ -9,15 +9,15 @@
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Menu from './components/Menu.vue';
-import Content from './components/Content.vue';
+import Header from "./components/Header.vue";
+import Menu from "./components/Menu.vue";
+import Content from "./components/Content.vue";
 
 export default {
-  data () {
+  data() {
     return {};
   },
-  name: 'app',
+  name: "app",
   components: {
     Header,
     Menu,

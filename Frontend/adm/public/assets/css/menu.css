@@ -25,6 +25,9 @@
 #menu.openmenu h1{
   display: none;
 }
+#menu.openmenu .row .col{
+  padding: 0;
+}
 #menu.openmenu .menu-list > li > a{
   font-size: 0.1px;
 }

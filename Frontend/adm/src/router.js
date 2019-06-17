@@ -52,7 +52,14 @@ export default new Router({
       path: '/eventos',
       name: 'eventos',
       component: function () {
-        return import('./views/BuscaEventos.vue');
+        return import('./views/Eventos.vue');
+      }
+    },
+    {
+      path: '/eventos/adicionar',
+      name: 'addevento',
+      component: function () {
+        return import('./components/AddEvento/AddEvento.vue');
       }
     },
     {
