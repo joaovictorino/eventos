@@ -61,7 +61,9 @@ def default(path = None):
         ret = "<pre>Available routes:\n"
         routes = [el for el in app.url_map.iter_rules()]
         for route in routes:
-            ret += "\t" + route.rule + "(" + ",".join(route.methods) + ")\n"
+            methods = filter(lambda m: m != "HEAD" and m != "OPTIONS", route.methods)
+            rule = route.rule.replace("<", "&lt;").replace(">", "&gt;")
+            ret += "\t" + rule + "(" + ",".join(methods) + ")\n"  
         ret += "</pre>"
     return ret
     
