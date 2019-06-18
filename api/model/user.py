@@ -36,6 +36,7 @@ class User(Document, CRUD):
     @classmethod
     def identity(cls, payload):        
         uid = payload["identity"]
+        print(payload)
         users = cls.objects(id=uid)
         if len(users) > 0:
             user = users[0]
@@ -54,6 +55,9 @@ class TokenUser(object):
     def __init__(self, user):
         self.id = str(user.id)
         self.name = user.name
+        self.permissions = []
+        for permission in user.permissions:
+            self.permissions.append((permission.group.name, permission.profile.name))
         
     def toDict(self):
         dic = {}
@@ -61,6 +65,12 @@ class TokenUser(object):
             if not callable(value) and "id" != key:
                 dic[key] = value
         return dic
+    
+import flask_jwt
+def JWTExtendedInfoMaker(tokenUser):
+    tokenInfo = flask_jwt._default_jwt_payload_handler(tokenUser)
+    tokenInfo["permissions"] = tokenUser.permissions
+    return tokenInfo
     
 from mongoengine import signals
 signals.pre_save.connect(User.pre_save, sender=User)

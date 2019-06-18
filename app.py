@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt import JWT
+import flask_jwt
 from flask_compress import Compress
 import common
 
@@ -28,7 +29,8 @@ app.session_interface = MongoEngineSessionInterface(db)
 
 import api.model
 
-jwt = JWT(app, api.model.user.User.authenticate, api.model.user.User.identity)
+jwt = JWT(app, api.model.user.User.authenticate, api.model.user.User.identity)    
+jwt.jwt_payload_handler(api.model.user.JWTExtendedInfoMaker)
 common.jwt = jwt
 
 import api.lib.routes
