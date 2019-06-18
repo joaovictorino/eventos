@@ -1,0 +1,64 @@
+header#header{
+  margin: 0;
+  height: 2rem;
+  background-color: rgba(0,0,0,0.2) !important;
+}
+header#header .menu-button{
+  padding: 0;
+  margin: 0;
+  width: 70px;
+  height: 2rem;
+}
+header#header #menu-open{
+  height: 2rem;
+  width: 100%;
+}
+header#header #menu-open.active{
+  background-color: rgba(0,0,0,0.2) !important;
+  height: 2rem;
+  width: 100%;
+  float: left;
+}
+header#header #menu-open a{
+  width: 100%;
+  float: left;
+  height: 2rem;
+}
+header#header #menu-open svg{
+}
+
+header#header .header-auth{
+  padding: 0;
+}
+.header-auth p{
+  margin: 0;
+  line-height: 2rem;
+  padding: 0 8px;
+}
+
+.header-user{
+  font-weight: bold;
+}
+.header-settings a{
+  color: #6b778c;
+  font-weight: bold;
+}
+.header-logoff a{
+  color: #bf0303;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header-login{
+  margin: 0;
+  line-height: 2rem;
+  background: #606c72;
+  width: fit-content;
+  padding: 0 8px;
+  float: right
+}
+.header-login a{
+  color: #fafafa;
+  font-weight: bold;
+  cursor: pointer;
+}
