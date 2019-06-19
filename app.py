@@ -1,13 +1,16 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt import JWT
+from flask_compress import Compress
 import common
 
 app = Flask(__name__)
-CORS(app)
 common.app = app
 
 app.config.from_pyfile('config.cfg')
+
+CORS(app)
+Compress(app)
 
 from lib.util import SetupEnv
 SetupEnv()
@@ -22,6 +25,7 @@ common.db = db
 
 from flask_mongoengine import MongoEngineSessionInterface
 app.session_interface = MongoEngineSessionInterface(db)
+
 import api.model
 
 jwt = JWT(app, api.model.user.User.authenticate, api.model.user.User.identity)

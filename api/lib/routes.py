@@ -53,8 +53,17 @@ def authenticationHandler(token, user):
     return {"token": token.decode(), 
             "user": user.toDict()}
 
+@app.route("/")
 @app.route("/<path:path>")
-@ErrorHandlerAndJsonifier
-def default(path):
-    return None
+def default(path = None):
+    ret = None
+    if app.debug:
+        ret = "<pre>Available routes:\n"
+        routes = [el for el in app.url_map.iter_rules()]
+        for route in routes:
+            methods = filter(lambda m: m != "HEAD" and m != "OPTIONS", route.methods)
+            rule = route.rule.replace("<", "&lt;").replace(">", "&gt;")
+            ret += "\t" + rule + "(" + ",".join(methods) + ")\n"  
+        ret += "</pre>"
+    return ret
     
