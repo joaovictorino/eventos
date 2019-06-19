@@ -71,10 +71,8 @@ export default {
   },
   methods: {},
   mounted: function () {
-    document.addEventListener('DOMContentLoaded', function () {
-      var Menuelem = document.querySelectorAll('.collapsible');
-      var Menuinst = M.Collapsible.init(Menuelem, { accordion: true }); // eslint-disable-line
-    });
+    var Menuelem = document.querySelectorAll('.collapsible');
+    var Menuinst = M.Collapsible.init(Menuelem, { accordion: true }); // eslint-disable-line
   }
 };
 </script>
