@@ -11,4 +11,6 @@ import api.model.notification
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def notification(id=None):
-    return api.model.notification.Notification.HandleRequest(request, id=id)
+	abstraction = api.model.notification.Notification
+	ValidateRequestPermissions(abstraction, request, id, GroupPermission, GroupPermission, SysAdminPermission)
+	return abstraction.HandleRequest(request, id=id)

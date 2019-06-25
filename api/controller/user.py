@@ -1,6 +1,7 @@
 from flask import request
 from api.lib.routeDecorators import *
 from api.lib.security import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -13,5 +14,6 @@ import api.model.user
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def user(id=None):
-    abstraction = api.model.user.User
-    return abstraction.HandleRequest(request, id=id)
+	abstraction = api.model.user.User
+	ValidateRequestPermissions(abstraction, request, id, OwnerPermission, OwnerPermission, SysAdminPermission)
+	return abstraction.HandleRequest(request, id=id)

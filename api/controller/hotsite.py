@@ -1,5 +1,6 @@
 from flask import request
 from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -11,4 +12,6 @@ import api.model.hotsite
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def hotsite(id=None):
-    return api.model.hotsite.Hotsite.HandleRequest(request, id=id)
+	abstraction = api.model.hotsite.Hotsite
+	ValidateRequestPermissions(abstraction, request, id, GroupPermission, GroupPermission)
+	return abstraction.HandleRequest(request, id=id)

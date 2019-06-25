@@ -1,5 +1,6 @@
 from flask import request
 from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -11,4 +12,6 @@ import api.model.eventGroup
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def eventGroup(id=None):
-    return api.model.eventGroup.EventGroup.HandleRequest(request, id=id)
+	abstraction = api.model.eventGroup.EventGroup
+	ValidateRequestPermissions(abstraction, request, id, GroupAdminCreateGroupPermission, GroupPermission)
+	return abstraction.HandleRequest(request, id=id)

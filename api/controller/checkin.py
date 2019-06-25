@@ -1,5 +1,6 @@
 from flask import request
 from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -11,4 +12,6 @@ import api.model.checkin
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def checkin(id=None):
-    return api.model.checkin.Checkin.HandleRequest(request, id=id)
+	abstraction = api.model.checkin.Checkin
+	ValidateRequestPermissions(abstraction, request, id, OwnerPermission, OwnerPermission, SysAdminPermission)
+	return abstraction.HandleRequest(request, id=id)

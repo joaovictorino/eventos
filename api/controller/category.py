@@ -1,5 +1,6 @@
 from flask import request
 from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -11,4 +12,6 @@ import api.model.category
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def category(id=None):
-    return api.model.category.Category.HandleRequest(request, id=id)
+	abstraction = api.model.category.Category
+	ValidateRequestPermissions(abstraction, request, id, None, GroupPermission, GroupPermission)
+	return abstraction.HandleRequest(request, id=id)

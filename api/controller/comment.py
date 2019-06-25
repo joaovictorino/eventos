@@ -1,5 +1,6 @@
 from flask import request
 from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -11,4 +12,6 @@ import api.model.comment
 @ErrorHandlerAndJsonifier
 @EnsureCredentials
 def comment(id=None):
-    return api.model.comment.Comment.HandleRequest(request, id=id)
+	abstraction = api.model.comment.Comment
+	ValidateRequestPermissions(abstraction, request, id, None, OwnerPermission, OwnerPermission)
+	return abstraction.HandleRequest(request, id=id)
