@@ -1,5 +1,5 @@
 from flask import request
-from api.lib.routeDecorators import ErrorHandlerAndJsonifier
+from api.lib.routeDecorators import *
 
 import common
 app = common.app

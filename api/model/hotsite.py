@@ -1,6 +1,7 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
+from api.lib.ownershipModels import *
 from api.model.userGroup import UserGroup
 from api.model.file import File
 from api.model.hsBanner import Banner
@@ -9,8 +10,7 @@ from api.model.hsFeatured import Featured
 from api.model.hsGallery import Gallery
 from api.model.hsPartner import Partner
 
-class Hotsite(Document, CRUD):
-    owner = ReferenceField(UserGroup)
+class Hotsite(Document, CRUD, UserGroupOwnership):
     ownerAddress = StringField(required=True, max_length=2048)
     ownerContact = StringField(required=True, max_length=2048)
     logoPic = ReferenceField(File)
@@ -27,7 +27,7 @@ class Hotsite(Document, CRUD):
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         document.updated_on = datetime.now()
-        
+
 from mongoengine import signals
 signals.pre_save.connect(Hotsite.pre_save, sender=Hotsite)
 

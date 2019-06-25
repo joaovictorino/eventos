@@ -1,20 +1,18 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
-from api.model.userGroup import UserGroup
+from api.lib.ownershipModels import *
 from api.model.activity import Activity
 from api.model.category import Category
-from api.model.category import CategoryGroup
+from api.model.categoryGroup import CategoryGroup
 
-class Event(Document, CRUD):
+class Event(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
-    owner = ReferenceField(UserGroup)
     publishDate = DateTimeField(required=True)
     unpublishDate = DateTimeField(required=True)
     startDate = DateTimeField(required=True)
     endDate = DateTimeField(required=True)
-    associatedGroup = ReferenceField(UserGroup)
     activities = EmbeddedDocumentListField(Activity)
     categories = ListField(ReferenceField(Category))
     categoryGroups = ListField(ReferenceField(CategoryGroup))
@@ -28,7 +26,7 @@ class Event(Document, CRUD):
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         document.updated_on = datetime.now()
-        
+            
 from mongoengine import signals
 signals.pre_save.connect(Event.pre_save, sender=Event)
 

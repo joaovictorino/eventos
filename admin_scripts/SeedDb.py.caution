@@ -125,18 +125,14 @@ dataPlace = {
 idPlace = DoRequest("place", dataPlace)
 
 dataNotification = {
-    "owner": idUser,
+    "owner": idUserGroup,
     "content": "Hello world notification",
 }
 idNotification= DoRequest("notification", dataNotification)
 
 dataCheckin = {
     "event": idEvent,
-    "citizen": idCitizen
+    "owner": idCitizen
 }
 idCheckin= DoRequest("checkin", dataCheckin)
 
-dataCalendar = {
-    "events": [idEvent],
-}
-idCalendar= DoRequest("calendar", dataCalendar)

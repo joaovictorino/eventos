@@ -1,53 +1,77 @@
 from mongoengine import *
 from bson import ObjectId
 
-import pdb
 class CRUD(object):
+    deleted = BooleanField(default = False)
+    
     @classmethod
     def HandleRequest(cls, request, **kwargs):
         ret = None
         if request.method == "GET":
-            if "id" in kwargs and kwargs["id"] is not None:
-                instances = cls.objects(id=kwargs['id'])
-                if len(instances) > 0:
-                    ret = instances[0]
-                else:
-                    raise Exception("Object not found")
-            else:
-                instances = cls.objects()
-                ret = instances
-            
+            ret = cls.DoRead(request, **kwargs)
         elif request.method == "POST":
-            instance = None
-            if "id" in kwargs and kwargs["id"] is not None:
-                instances = cls.objects(id=kwargs['id'])
-                if len(instances) > 0:
-                    instance = instances[0]
-            
-            if instance is None:
-                instance = cls()
-            
-            data = request.get_json()
-            for key in data:
-                fieldValue = data[key]
-                FillInInstanceWithData(instance, key, fieldValue)
-            instance.save()
-            instance.cascade_save()
-            ret = instance
-        
+            ret = cls.DoWrite(request, **kwargs)
         elif request.method == "DELETE":
-            if "id" in kwargs and kwargs["id"] is not None:
-                instances = cls.objects(id=kwargs['id'])
-                if len(instances) > 0:
-                    instance = instances[0]
-                    instance.delete()
-                else:
-                    raise Exception("Object not found")
-            else:
-                    raise Exception("Object not selected")
+            ret = cls.DoDelete(request, **kwargs)
         else:
             raise Exception("No such operation")
         return ret
+        
+    @classmethod
+    def DoRead(cls, request, **kwargs):
+        ret = None
+        if "id" in kwargs and kwargs["id"] is not None:
+            instances = cls.objects(id=kwargs['id'], deleted=False)
+            if len(instances) > 0:
+                ret = instances[0]
+            else:
+                raise Exception("Object not found")
+        else:                
+            params = {k: v for k, v in request.args.items()}
+            if "__raw__" in params:
+                raise Exception("Invalid query")
+            instances = cls.objects(**params, deleted=False)
+            ret = list(instances)
+        return ret
+        
+    @classmethod
+    def DoWrite(cls, request, **kwargs):
+        ret = None
+        instance = None
+        if "id" in kwargs and kwargs["id"] is not None:
+            instances = cls.objects(id=kwargs['id'], deleted=False)
+            if len(instances) > 0:
+                instance = instances[0]
+        
+        if instance is None:
+            instance = cls()
+        
+        data = request.get_json()
+        for key in data:
+            fieldValue = data[key]
+            FillInInstanceWithData(instance, key, fieldValue)
+        
+        instance.save()
+        instance.cascade_save()
+        ret = instance
+        return ret
+        
+    @classmethod
+    def DoDelete(cls, request, **kwargs):
+        ret = None
+        if "id" in kwargs and kwargs["id"] is not None:
+            instances = cls.objects(id=kwargs['id'])
+            if len(instances) > 0:
+                instance = instances[0]
+                #Never delete
+                instance.deleted=True
+                instance.save()
+            else:
+                raise Exception("Object not found")
+        else:
+                raise Exception("Object not selected")
+        return ret
+        
 
 def FillInInstanceWithData(instance, fieldName, fieldValue):
     if fieldName in instance._fields:

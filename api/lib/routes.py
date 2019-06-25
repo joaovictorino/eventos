@@ -1,5 +1,5 @@
 from flask import request
-from api.lib.routeDecorators import ErrorHandlerAndJsonifier, EnsurePermissions
+from api.lib.routeDecorators import *, EnsureCredentials
 
 import common
 app = common.app
@@ -25,13 +25,13 @@ def testFail():
         
 @app.route("/api/testPermissionsOk")
 @ErrorHandlerAndJsonifier
-@EnsurePermissions("p1")
+@EnsureCredentials
 def testPermissionsOk():
     return "Access Granted"
     
 @app.route("/api/testPermissionsFail")
 @ErrorHandlerAndJsonifier
-@EnsurePermissions("undefined permission")
+@EnsureCredentials
 def testPermissionsFail():
     return "Access Denied"
 

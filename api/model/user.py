@@ -32,15 +32,6 @@ class User(Document, CRUD):
             user = users[0]
             if user.verify(password):
                 return TokenUser(user)
-                
-    @classmethod
-    def identity(cls, payload):        
-        uid = payload["identity"]
-        print(payload)
-        users = cls.objects(id=uid)
-        if len(users) > 0:
-            user = users[0]
-            return user
             
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
@@ -50,12 +41,13 @@ class User(Document, CRUD):
             document.password = None
         if document.name is not None:
             document.name = document.name.lower()
-        
+  
 class TokenUser(object):
     def __init__(self, user):
         self.id = str(user.id)
         self.name = user.name
         self.permissions = []
+        self.actor = "user"
         for permission in user.permissions:
             self.permissions.append((permission.group.name, permission.profile.name))
         
@@ -65,13 +57,7 @@ class TokenUser(object):
             if not callable(value) and "id" != key:
                 dic[key] = value
         return dic
-    
-import flask_jwt
-def JWTExtendedInfoMaker(tokenUser):
-    tokenInfo = flask_jwt._default_jwt_payload_handler(tokenUser)
-    tokenInfo["permissions"] = tokenUser.permissions
-    return tokenInfo
-    
+        
 from mongoengine import signals
 signals.pre_save.connect(User.pre_save, sender=User)
 

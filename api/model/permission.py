@@ -7,4 +7,3 @@ class Permission(EmbeddedDocument, CRUD):
     profile = ReferenceField(Profile)
     group = ReferenceField('UserGroup')
     
-    
