@@ -22,19 +22,7 @@ def testEmpty():
 def testFail():
     if app.debug:
         raise Exception("Exception Message")
-        
-@app.route("/api/testPermissionsOk")
-@ErrorHandlerAndJsonifier
-@EnsureCredentials
-def testPermissionsOk():
-    return "Access Granted"
     
-@app.route("/api/testPermissionsFail")
-@ErrorHandlerAndJsonifier
-@EnsureCredentials
-def testPermissionsFail():
-    return "Access Denied"
-
 import api.lib.upload
 @app.route("/api/testUpload", methods=["POST"])
 @ErrorHandlerAndJsonifier
