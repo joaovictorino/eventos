@@ -1,3 +1,18 @@
+html{
+  font-size: 16px;
+  color: #000000;
+  font-style: normal;
+  background: #cfd8dc;
+  /*background: linear-gradient(260deg, rgba(236,239,241,1) 0%, rgba(144,164,174,1) 100%);*/
+}
+
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+
 /*PALETA CORES v*/
 
 .indigo-gradient{
@@ -93,6 +108,9 @@ strong{
   font-weight: bold;
 }
 
+label{
+  color: #000000;
+}
 
 .loading{
   position: fixed;
@@ -116,4 +134,11 @@ strong{
   background-color: rgba(30,55,76,0.75);
   margin: 8px;
   border-radius: 8px;
+}
+
+.row .col.m0 {
+  width: 3%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
 }
