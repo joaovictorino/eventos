@@ -11,7 +11,7 @@ class CategoryGroup(Document, CRUD):
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         document.updated_on = datetime.now()
-        
+              
 from mongoengine import signals
 signals.pre_save.connect(CategoryGroup.pre_save, sender=CategoryGroup)
 

@@ -1,9 +1,10 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
-from api.model.plan import Plan
+from api.lib.ownershipModels import *
+from api.model.userGroup import UserGroup
 
-class File(Document, CRUD):
+class File(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, max_length=200)
     description = StringField(required=True, max_length=1024)
     alt = StringField(required=True, max_length=200)

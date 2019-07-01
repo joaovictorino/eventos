@@ -1,5 +1,6 @@
 from flask import request
-from api.lib.routeDecorators import ErrorHandlerAndJsonifier
+from api.lib.routeDecorators import *
+from api.lib.security import *
 
 import common
 app = common.app
@@ -9,5 +10,8 @@ import api.model.profile
 @app.route("/api/profile", methods=["GET", "POST"])
 @app.route("/api/profile/<id>", methods=["GET", "POST", "DELETE"])
 @ErrorHandlerAndJsonifier
+@EnsureCredentials
 def profile(id=None):
-    return api.model.profile.Profile.HandleRequest(request, id=id)
+	abstraction = api.model.profile.Profile
+	ValidateRequestPermissions(abstraction, request, id, UserPermission, SysAdminPermission, SysAdminPermission)
+	return abstraction.HandleRequest(request, id=id)

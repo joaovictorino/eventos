@@ -28,8 +28,10 @@ app.session_interface = MongoEngineSessionInterface(db)
 
 import api.model
 
-jwt = JWT(app, api.model.user.User.authenticate, api.model.user.User.identity)
+import api.lib.jwt
+jwt = JWT(app, None, api.lib.jwt.Identity)
 common.jwt = jwt
+api.lib.jwt.SetupJwt()
 
 import api.lib.routes
 import api.controller

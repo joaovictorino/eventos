@@ -3,7 +3,7 @@ from datetime import datetime
 from api.lib.modelBase import CRUD
 from api.model.event import Event
 
-class Calendar(Document, CRUD):
+class Calendar(EmbeddedDocument, CRUD):
     events = ListField(ReferenceField(Event))
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())

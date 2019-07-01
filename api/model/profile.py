@@ -11,7 +11,7 @@ class Profile(Document, CRUD):
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         document.updated_on = datetime.now()
-        
+
 from mongoengine import signals
 signals.pre_save.connect(Profile.pre_save, sender=Profile)
 

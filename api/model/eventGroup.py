@@ -1,13 +1,14 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
+from api.lib.ownershipModels import *
 from api.model.userGroup import UserGroup
 from api.model.file import File
+import common
 
-class EventGroup(Document, CRUD):
+class EventGroup(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, max_length=200)
     description = StringField(required=False, max_length=2000)
-    owner = ReferenceField(UserGroup)
     image = ReferenceField(File)
     events = ListField(ReferenceField('Event'))
     startDate = DateTimeField(required=True)

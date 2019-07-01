@@ -1,11 +1,11 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
+from api.lib.ownershipModels import *
 from api.model.citizen import Citizen
 from api.model.event import Event
 
-class Comment(Document, CRUD):
-    owner = ReferenceField(Citizen)
+class Comment(Document, CRUD, CitizenOwnership):
     event = ReferenceField(Event)
     visible = BooleanField(default=True)
     content = StringField(required=False, max_length=5000)

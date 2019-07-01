@@ -1,10 +1,11 @@
 from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
-from api.model.user import User
+from api.lib.ownershipModels import *
+from api.model.userGroup import UserGroup
 import re
 
-class Place(Document, CRUD):
+class Place(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, unique=True, max_length=200)
     description = StringField(required=False, max_length=2000)
     coordinates = GeoPointField()
