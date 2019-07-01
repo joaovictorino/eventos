@@ -11,6 +11,7 @@ export default new Vuex.Store({
     isCOpen: '',
     logado: 0,
     user: 'Daniel Niemietz Braz',
+    tipoEvento: '',
     menus: [
       {
         Text: 'Hotsite',
@@ -98,6 +99,25 @@ export default new Vuex.Store({
         ]
       }
     ],
+    locais: {
+      local: [
+        {
+          nome: 'praca tal'
+        },
+        {
+          nome: 'rua do kct'
+        },
+        {
+          nome: 'praca tal 2'
+        },
+        {
+          nome: 'praca tal 3'
+        },
+        {
+          nome: 'avenida'
+        },
+      ]
+    },
     eventos: {
       count: 1000,
       grid: [
