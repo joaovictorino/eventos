@@ -10,102 +10,30 @@ nav#menu{
 #content{
   height: calc(100vh - 2rem);
   padding: 0;
-  /*overflow-y: scroll;
-  overflow-x: hidden;*/
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #content.expcontent{
   width: calc(100% - 70px);
 }
 
-
 #content > .row{
   margin: 0;
 }
 
-#content .home{
-  padding: 1rem;
-}
-
-#content .home .row.title-section{
-  margin: 0;
-}
-
-#content .home .row.title-section h2{
-  padding: 0;
-}
-
-.box-wrap{
-  padding: 0 !important;
-}
-  .box-wrap .box-content{
-    min-height: 430px;
-    width: calc(100% - 16px);
-    display: block;
-    float: left;
-    border-radius: 4px;
-    background: #fafafa;
-    padding: 8px;
-    margin: 8px;
-    position: relative;
-  }
-  .box-content.maps{
-    height: calc(100vh - 212px);
-  }
-    .box-wrap .box-content .painel-direct{
-      float: left;
-      display: block;
-      text-align: right;
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 4px;
-    }
-  .box-wrap .box-form{
-    min-height: 1rem;
-    width: calc(100% - 16px);
-    display: block;
-    float: left;
-    border-radius: 4px;
-    background: #fafafa;
-    padding: 8px;
-    margin: 8px;
-    position: relative;
-  }
-    
-.chart-box{
-  padding: 1rem;
-}
-
-.bi-label{
-  font-weight: bold;
-}
-.bi-detalhe{
-  font-size: 0.575rem;
-  line-height: 1rem;
-}
-
-.growth-span{
-  font-style: italic;
-  color: #18983C;
-}
-
-
-#metricaOperacional span{
-  font-style: italic;
-  font-size: 0.895rem;
-}
-  .metrica-item strong{
-    font-size: 1.775rem;
-    width: 100%;
-    float: left;
-    line-height: 1.675rem;
-  }
-
-
 .login-entrar .btn{
   width: 100%;
   box-shadow: none;
+}
+
+#actionbar{
+  position: sticky;
+  top: 0;
+  display: block;
+  z-index: 9999;
+  padding: 0.5rem 0;
+  background-color: #cfd8dc;
 }
 
 /*MATERIAL*/
@@ -145,8 +73,12 @@ nav#menu{
   height: 4px;
 }
 
-.input-field>label:not(.label-icon).active{
+.input-field > label:not(.label-icon).active{
   transform: translateY(-18px) scale(0.8);
+}
+
+.input-field label{
+  pointer-events: all !important;
 }
 
 [type="radio"]:not(:checked)+span, [type="radio"]:checked+span{
@@ -196,6 +128,11 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #475765;
 }
 
+::placeholder{
+  color: #9e9e9e;
+  font-style: italic;
+}
+
 [type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after{
   background-color: #03a9f4;
 }
@@ -216,6 +153,7 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 .btn{
   box-shadow: none;
+  margin: 0 2px;
   background-color: #03a9f4;
 }
 .btn:hover{
@@ -228,11 +166,16 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 }
 
 .input-field{
-  margin: 0;
+  
 }
 
 .input-field > label{
   color: #475765;
+}
+
+.radio-title{
+  padding: 0 2rem 0 0;
+  font-weight: 500;
 }
 
 #login img{

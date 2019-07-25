@@ -24,55 +24,6 @@ background: linear-gradient(135deg, #1e374c 0%,#0d4b7f 100%); /* W3C, IE10+, FF1
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e374c', endColorstr='#0d4b7f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.amber{
-  background-color: #ffaf00 !important;
-}
-
-.indigo{
-  background-color: #1e374c !important;
-}
-
-.grey{
-  background-color: #333333 !important;
-}
-
-.white{
-  background-color: #fafafa !important;
-}
-
-.yellow{
-  background-color: #ffbe00 !important;
-}
-
-
-.amber-text{
-  color: #ffaf00 !important;
-}
-
-.indigo-text{
-  color: #1e374c !important;
-}
-
-.grey-text{
-  color: #333333 !important;
-}
-
-.white-text{
-  color: #fafafa !important;
-}
-
-.yellow-text{
-  color: #ffbe00 !important;
-}
-.white.btn-large{
-  height: 96px;
-}
-.white.btn{
-  text-align: center !important;
-  border: 1px solid #fafafa !important;
-  box-shadow: none;
-  font-size: 1.275rem;
-}
 
 /*PALETA CORES ^*/
 
