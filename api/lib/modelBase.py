@@ -39,17 +39,21 @@ class CRUD(object):
         ret = None
         instance = None
         if "id" in kwargs and kwargs["id"] is not None:
-            instances = cls.objects(id=kwargs['id'], state = "ACTIVE")
+            instances = cls.objects(id=kwargs['id'])
             if len(instances) > 0:
                 instance = instances[0]
         
         if instance is None:
             instance = cls()
+            
+        if instance.state == "DELETED":
+            instance.state = "ACTIVE"
         
-        data = request.get_json()
-        for key in data:
-            fieldValue = data[key]
-            FillInInstanceWithData(instance, key, fieldValue)
+        else:
+            data = request.get_json()
+            for key in data:
+                fieldValue = data[key]
+                FillInInstanceWithData(instance, key, fieldValue)
         
         instance.save()
         instance.cascade_save()

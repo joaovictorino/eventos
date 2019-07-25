@@ -41,3 +41,29 @@ u.email = "root"
 u.login = "root"
 u.password = "123456"
 u.save()
+
+
+uf = api.model.uf.UF()
+uf.drop_collection()
+uf.name = "SP"
+uf.save()
+
+uf = api.model.uf.UF()
+uf.name = "MG"
+uf.save()
+
+uf = api.model.uf.UF()
+uf.name = "RJ"
+uf.save()
+
+uf = api.model.uf.UF()
+uf.name = "PR"
+uf.save()
+
+uf = api.model.uf.UF()
+uf.name = "SC"
+uf.save()
+
+uf = api.model.uf.UF()
+uf.name = "RS"
+uf.save()
