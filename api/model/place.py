@@ -2,7 +2,7 @@ from mongoengine import *
 from datetime import datetime
 from api.lib.modelBase import CRUD
 from api.lib.ownershipModels import *
-from api.model.userGroup import UserGroup
+from api.model.district import District
 import re
 
 class Place(Document, CRUD, UserGroupOwnership):
@@ -13,6 +13,7 @@ class Place(Document, CRUD, UserGroupOwnership):
     number = StringField(required=True, max_length=15)
     cep = LongField()
     neighborhood = StringField(required=True, max_length=200)
+    district = ReferenceField(District)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 

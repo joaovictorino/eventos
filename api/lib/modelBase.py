@@ -2,7 +2,7 @@ from mongoengine import *
 from bson import ObjectId
 
 class CRUD(object):
-    deleted = BooleanField(default = False)
+    state = StringField(default = "ACTIVE")
     
     @classmethod
     def HandleRequest(cls, request, **kwargs):
@@ -21,7 +21,7 @@ class CRUD(object):
     def DoRead(cls, request, **kwargs):
         ret = None
         if "id" in kwargs and kwargs["id"] is not None:
-            instances = cls.objects(id=kwargs['id'], deleted=False)
+            instances = cls.objects(id=kwargs['id'], state = "ACTIVE")
             if len(instances) > 0:
                 ret = instances[0]
             else:
@@ -30,7 +30,7 @@ class CRUD(object):
             params = {k: v for k, v in request.args.items()}
             if "__raw__" in params:
                 raise Exception("Invalid query")
-            instances = cls.objects(**params, deleted=False)
+            instances = cls.objects(**params, state = "ACTIVE")
             ret = list(instances)
         return ret
         
@@ -39,7 +39,7 @@ class CRUD(object):
         ret = None
         instance = None
         if "id" in kwargs and kwargs["id"] is not None:
-            instances = cls.objects(id=kwargs['id'], deleted=False)
+            instances = cls.objects(id=kwargs['id'], state = "ACTIVE")
             if len(instances) > 0:
                 instance = instances[0]
         
@@ -64,7 +64,7 @@ class CRUD(object):
             if len(instances) > 0:
                 instance = instances[0]
                 #Never delete
-                instance.deleted=True
+                instance.state = "DELETED"
                 instance.save()
             else:
                 raise Exception("Object not found")

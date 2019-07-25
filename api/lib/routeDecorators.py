@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import jsonify
-from common import log
+from common import log, app
 
 def ErrorHandlerAndJsonifier(func):
     @wraps(func)
@@ -24,6 +24,8 @@ def ErrorHandlerAndJsonifier(func):
             objResponse = jsonify(response)
         except Exception as ex:
             log.error("Error returning serializing repsonse")
+            if (app.debug):
+                log.error(ex)
             objResponse = "Was not possible to serialize response"
         return objResponse
     return wrapper
