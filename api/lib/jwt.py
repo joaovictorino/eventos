@@ -2,7 +2,6 @@ import common
 from flask import request, jsonify
 import flask_jwt
 
-
 def SetupJwt():
     common.jwt.jwt_payload_handler(JWTExtendedInfoMaker)
     
@@ -15,7 +14,7 @@ def JWTExtendedInfoMaker(identity):
 
 import api.model.user
 from api.lib.routeDecorators import *
-@common.app.route("/auth", methods=["POST"])
+@common.app.route("/api/auth", methods=["POST"])
 @ErrorHandlerAndJsonifier
 def JWTAuthHandler():
     userObj = None
@@ -31,6 +30,8 @@ def JWTAuthHandler():
     identity = None
     if actor == "user":
         identity = api.model.user.User.authenticate(username, password)
+    elif actor == "citizen":
+        identity = api.model.citizen.Citizen.authenticate(username, password)
     else:
         raise Exception("Bad Request: Invalid actor")
     

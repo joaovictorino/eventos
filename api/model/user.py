@@ -39,8 +39,8 @@ class User(Document, CRUD):
         if document.password is not None:
             document.setPassword(document.password)
             document.password = None
-        if document.name is not None:
-            document.name = document.name.lower()
+        if document.login is not None:
+            document.login = document.login.lower()
   
 class TokenUser(object):
     def __init__(self, user):
