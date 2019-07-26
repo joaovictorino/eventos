@@ -11,6 +11,10 @@ class Category(Document, CRUD, UserGroupOwnership):
     group = ReferenceField(CategoryGroup)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
+    
+    meta = {'indexes': 
+         [{'fields': ['$name', '$description']}]
+    }
 
     @classmethod
     def pre_save(cls, sender, document, **kwargs):

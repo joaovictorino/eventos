@@ -28,7 +28,6 @@ class CRUD(object):
                 raise Exception("Object not found")
         else:                
             params = {k: v for k, v in request.args.items()}
-            print (params)
             if "__raw__" in params:
                 raise Exception("Invalid query")
             elif "search_text" in params:
