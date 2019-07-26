@@ -25,6 +25,9 @@ class User(Document, CRUD):
         valid = bcrypt.checkpw(encoded, self.accessToken)
         return valid
         
+    def getUserAbstraction(self):
+        return TokenUser(self)
+        
     @classmethod
     def authenticate(cls, login, password):
         users = cls.objects(login=login)

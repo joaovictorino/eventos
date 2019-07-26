@@ -14,12 +14,13 @@ def JWTExtendedInfoMaker(identity):
 
 import api.model.user
 from api.lib.routeDecorators import *
+from api.lib.cacAuth import LoginUser
 @common.app.route("/api/auth", methods=["POST"])
 @ErrorHandlerAndJsonifier
 def JWTAuthHandler():
     userObj = None
     data = request.get_json()
-    username = data.get(common.app.config.get('JWT_AUTH_USERNAME_KEY'), None)
+    username = data.get(common.app.config.get('JWT_AUTH_USERNAME_KEY'), None).lower()
     password = data.get(common.app.config.get('JWT_AUTH_PASSWORD_KEY'), None)
     actor = data.get(common.app.config.get('JWT_AUTH_ACTOR_KEY'), None)
     criterion = [username, password, actor]
@@ -29,7 +30,23 @@ def JWTAuthHandler():
 
     identity = None
     if actor == "user":
-        identity = api.model.user.User.authenticate(username, password)
+        if username == "root":
+            identity = api.model.user.User.authenticate(username, password)
+        else:
+            cacLoginId = LoginUser(username, password)
+            if "status" in cacLoginId and cacLoginId["status"] == "OK":
+                userInstance = api.model.user.User.objects(login = username).first()
+                if not userInstance:
+                    common.log.info("Creating instance for user: " + username)
+                    userInstance = api.model.user.User()
+                    userInstance.name = cacLoginId["usuario"]["nm_usuario"]
+                    userInstance.login = username
+                    userInstance.password = password
+                    userInstance.email = "user@cac"
+                    userInstance.save()
+                identity = userInstance.getUserAbstraction()
+                print (identity)
+                    
     elif actor == "citizen":
         identity = api.model.citizen.Citizen.authenticate(username, password)
     else:
