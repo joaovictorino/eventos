@@ -15,3 +15,11 @@ def file(id=None):
 	abstraction = api.model.file.File
 	ValidateRequestPermissions(abstraction, request, id, None, GroupPermission, GroupPermission)
 	return abstraction.HandleRequest(request, id=id)
+
+import api.lib.upload
+@app.route("/api/upload", methods=["POST"])
+@ErrorHandlerAndJsonifier
+@EnsureCredentials
+def upload():
+    if app.debug:
+        return api.lib.upload.Upload(request)

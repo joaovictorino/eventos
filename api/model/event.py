@@ -5,9 +5,11 @@ from api.lib.ownershipModels import *
 from api.model.activity import Activity
 from api.model.category import Category
 from api.model.place import Place
+from api.model.file import File
 
 class Event(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, max_length=200)
+    preview = ReferenceField(File)
     description = StringField(required=False, max_length=2000)
     publishDate = DateTimeField(required=True)
     unpublishDate = DateTimeField(required=True)

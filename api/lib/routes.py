@@ -22,14 +22,7 @@ def testEmpty():
 def testFail():
     if app.debug:
         raise Exception("Exception Message")
-    
-import api.lib.upload
-@app.route("/api/testUpload", methods=["POST"])
-@ErrorHandlerAndJsonifier
-def upload():
-    if app.debug:
-        return api.lib.upload.Upload(request)
-        
+            
 @jwt.jwt_error_handler
 @ErrorHandlerAndJsonifier
 def jwtError(e):
