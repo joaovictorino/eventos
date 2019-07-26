@@ -94,6 +94,7 @@ def FillInInstanceWithData(instance, fieldName, fieldValue):
         #Handle ListField(ReferenceField)
         elif type(field) is ListField and type(field.field) is ReferenceField and type(fieldValue) == list:
             instanceList = getattr(instance, fieldName)
+            instanceList.clear()
             for singleValue in fieldValue:
                 referredInstance = field.field.document_type.objects(id=ObjectId(singleValue))
                 if len(referredInstance) > 0:
@@ -110,6 +111,7 @@ def FillInInstanceWithData(instance, fieldName, fieldValue):
             if type(fieldValue) is not list:
                 fieldValue = [fieldValue]
             classField = getattr(instance, fieldName)
+            classField.clear()
             for embedded in fieldValue:
                 embeddedInstance = field.field.document_type(**embedded)
                 classField.append(embeddedInstance)                
