@@ -28,14 +28,19 @@ class CRUD(object):
                 raise Exception("Object not found")
         else:                
             params = {k: v for k, v in request.args.items()}
+            state = "ACTIVE"
+            
+            if "state" in params:
+                state = params["state"]
+                del params["state"]
             if "__raw__" in params:
                 raise Exception("Invalid query")
             elif "search_text" in params:
                 search_text = params["search_text"]
                 del params["search_text"]
-                instances = cls.objects(**params, state = "ACTIVE").search_text(search_text)
+                instances = cls.objects(**params, state = state).search_text(search_text)
             else:
-                instances = cls.objects(**params, state = "ACTIVE")
+                instances = cls.objects(**params, state = state)
             ret = list(instances)
         return ret
         

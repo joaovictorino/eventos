@@ -28,6 +28,9 @@ class Event(Document, CRUD, UserGroupOwnership):
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
+    meta = {'indexes': 
+         [{'fields': ['$name']}]
+    }
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         document.updated_on = datetime.now()
