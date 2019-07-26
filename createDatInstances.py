@@ -180,11 +180,12 @@ d = api.model.district.District()
 d.name = "Vila Prudente"
 d.save()
 
-d = api.model.district.District()
-d.name = ""
-d.save()
-
 ##############################
+uf = api.model.uf.UF()
+uf.drop_collection()
+uf.name = "SP"
+uf.save()
+
 uf = api.model.uf.UF()
 uf.name = "RO"
 uf.save()
