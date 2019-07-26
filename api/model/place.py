@@ -22,6 +22,12 @@ class Place(Document, CRUD, UserGroupOwnership):
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
+
+    meta = {'indexes': 
+         [{'fields': ['$name', '$description', '$city', '$complement', '$street', '$neighborhood']}]
+    }
+    
+    
     @classmethod
     def pre_save(cls, sender, document, **kwargs):
         if (document.cep and type(document.cep) != int):
