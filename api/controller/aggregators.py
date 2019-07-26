@@ -56,5 +56,5 @@ def placeListInfor():
     info = {}
     info["uf"] = api.model.uf.UF.objects(state = "ACTIVE").all()
     info["districts"] = api.model.district.District.objects(state = "ACTIVE").all()
-    info["places"] = api.model.place.Place.objects().all()
+    info["places"] = api.model.place.Place.objects(category = "GLOBAL").all()
     return info

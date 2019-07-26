@@ -23,6 +23,7 @@ class Event(Document, CRUD, UserGroupOwnership):
     externalUrl = StringField(required=False, max_lenght=200)
     hasSubscription = BooleanField(default=False)
     place = ReferenceField(Place)
+    complement = StringField(required=False, max_lenght=200)
     isPaid = BooleanField(default=False)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())

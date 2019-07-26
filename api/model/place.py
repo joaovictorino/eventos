@@ -18,6 +18,7 @@ class Place(Document, CRUD, UserGroupOwnership):
     cep = LongField()
     neighborhood = StringField(max_length=200)
     district = ReferenceField(District)
+    category = StringField(default="GLOBAL", max_length=10)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())
 
