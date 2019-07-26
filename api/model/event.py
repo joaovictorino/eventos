@@ -4,7 +4,7 @@ from api.lib.modelBase import CRUD
 from api.lib.ownershipModels import *
 from api.model.activity import Activity
 from api.model.category import Category
-from api.model.categoryGroup import CategoryGroup
+from api.model.place import Place
 
 class Event(Document, CRUD, UserGroupOwnership):
     name = StringField(required=True, max_length=200)
@@ -14,11 +14,13 @@ class Event(Document, CRUD, UserGroupOwnership):
     startDate = DateTimeField(required=True)
     endDate = DateTimeField(required=True)
     activities = EmbeddedDocumentListField(Activity)
-    categories = ListField(ReferenceField(Category))
-    categoryGroups = ListField(ReferenceField(CategoryGroup))
+    category = ReferenceField(Category)
+    capacity = StringField(max_length=30)
     tags = ListField(StringField(max_length=20))
-    externalUrl = URLField()
+    hashtags = ListField(StringField(max_length=20))
+    externalUrl = StringField(required=False, max_lenght=200)
     hasSubscription = BooleanField(default=False)
+    place = ReferenceField(Place)
     isPaid = BooleanField(default=False)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())

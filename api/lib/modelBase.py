@@ -51,7 +51,10 @@ class CRUD(object):
         
         else:
             data = request.get_json()
+        
             for key in data:
+                if type(data[key]) == str and len(data[key]) == 0:
+                    continue
                 fieldValue = data[key]
                 FillInInstanceWithData(instance, key, fieldValue)
         
