@@ -21,7 +21,7 @@ class CRUD(object):
     def DoRead(cls, request, **kwargs):
         ret = None
         if "id" in kwargs and kwargs["id"] is not None:
-            instances = cls.objects(id=kwargs['id'], state = "ACTIVE")
+            instances = cls.objects(id=kwargs['id'])
             if len(instances) > 0:
                 ret = instances[0]
             else:
@@ -29,7 +29,6 @@ class CRUD(object):
         else:                
             params = {k: v for k, v in request.args.items()}
             state = "ACTIVE"
-            
             if "state" in params:
                 state = params["state"]
                 del params["state"]
