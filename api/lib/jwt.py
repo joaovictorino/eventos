@@ -14,7 +14,8 @@ def JWTExtendedInfoMaker(identity):
 
 import api.model.user
 from api.lib.routeDecorators import *
-from api.lib.cacAuth import LoginUser
+import api.lib.cacAuth
+import api.lib.ldapAuth
 @common.app.route("/api/auth", methods=["POST"])
 @ErrorHandlerAndJsonifier
 def JWTAuthHandler():
@@ -33,20 +34,42 @@ def JWTAuthHandler():
         if username == "root":
             identity = api.model.user.User.authenticate(username, password)
         else:
-            cacLoginId = LoginUser(username, password)
-            if "status" in cacLoginId and cacLoginId["status"] == "OK":
-                userInstance = api.model.user.User.objects(login = username).first()
-                if not userInstance:
-                    common.log.info("Creating instance for user: " + username)
-                    userInstance = api.model.user.User()
-                    userInstance.name = cacLoginId["usuario"]["nm_usuario"]
-                    userInstance.login = username
-                    userInstance.password = password
-                    userInstance.email = "user@cac"
-                    userInstance.save()
-                identity = userInstance.getUserAbstraction()
-                print (identity)
-                    
+            userInstances = api.model.user.User.objects(login = username).all()
+            if len(userInstances):
+                userInstance = userInstances[0]
+                if not userInstance.active:
+                    raise Exception("Bad request: invalid credentials")
+                
+                if userInstance.auth_method == "CAC":
+                    cacLoginId = api.lib.cacAuth.LoginUser(username, password)
+                    if "status" in cacLoginId and cacLoginId["status"] == "OK":
+                        identity = userInstance.getUserAbstraction()
+                        
+                elif userInstance.auth_method == "LDAP":
+                    userInfo = api.lib.ldapAuth.LoginUser(username, password)
+                    print(userInfo)
+                    if userInfo is not None:
+                        userInstance.name=userInfo["name"].decode("utf-8", errors="ignore")
+                        userInstance.email=userInfo["email"].decode("utf-8", errors="ignore")
+                        userInstance.password=password
+                        userInstance.save()
+                        identity = userInstance.getUserAbstraction()
+                 
+            else:
+                cacLoginId = api.lib.cacAuth.LoginUser(username, password)
+                if "status" in cacLoginId and cacLoginId["status"] == "OK":
+                    userInstance = api.model.user.User.objects(login = username).first()
+                    if not userInstance:
+                        common.log.info("Creating instance for user: " + username)
+                        userInstance = api.model.user.User()
+                        userInstance.name = cacLoginId["usuario"]["nm_usuario"]
+                        userInstance.login = username
+                        userInstance.auth_method = "CAC"
+                        userInstance.password = password
+                        userInstance.email = "user@cac"
+                        userInstance.save()
+                    identity = userInstance.getUserAbstraction()
+    
     elif actor == "citizen":
         identity = api.model.citizen.Citizen.authenticate(username, password)
     else:

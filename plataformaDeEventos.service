@@ -9,7 +9,7 @@ User = root
 Group = root
 WorkingDirectory = /opt/PlataformaDeEventos/plataformaeventos
 ExecStartPre = /bin/mkdir /run/peventos
-ExecStart = /opt/PlataformaDeEventos/venv/bin/gunicorn --workers=5 app -b 0.0.0.0:8000 --pid /run/peventos/eventos.pid
+ExecStart = /opt/PlataformaDeEventos/venv/bin/gunicorn --workers=5 app:app -b 0.0.0.0:8000 --pid /run/peventos/eventos.pid
 ExecReload = /bin/kill -s HUP $MAINPID
 ExecStop = /bin/kill -s TERM $MAINPID
 ExecStopPost = /bin/rm -rf /run/peventos

@@ -38,4 +38,4 @@ import api.controller
 if __name__ == "__main__":
     app.debug = True
     log.info("App running in debug mode")
-    app.run(port=80)
+    app.run(host="localhost", port=80)
