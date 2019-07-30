@@ -13,7 +13,6 @@ class User(Document, CRUD):
     password = StringField(required=False, max_length=100)
     accessToken = BinaryField(required=True, max_length=100)
     auth_method = StringField(default="LOCAL", max_length=20)
-    active = BooleanField(default=True)
     permissions = EmbeddedDocumentListField(Permission)
     created_on = DateTimeField(default=datetime.now())
     updated_on = DateTimeField(default=datetime.now())

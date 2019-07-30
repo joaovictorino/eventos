@@ -37,7 +37,7 @@ def JWTAuthHandler():
             userInstances = api.model.user.User.objects(login = username).all()
             if len(userInstances):
                 userInstance = userInstances[0]
-                if not userInstance.active:
+                if userInstance.state != "ACTIVE":
                     raise Exception("Bad request: invalid credentials")
                 
                 if userInstance.auth_method == "CAC":
