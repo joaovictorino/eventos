@@ -26,4 +26,4 @@ WTForms==2.2.1
 zeep==2.4.0
 lxml==4.3.4
 gunicorn
-python-ldap==3.2.0
+python-ldap==3.4.0
